@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrea Palacio | AI Strategist</title>
+<meta name="description" content="Andrea Palacio — AI Business Strategist, Speaker, Founder of Crewless. Take the free AI audit to find out how efficient your business really is.">
+<meta property="og:title" content="Andrea Palacio | AI Strategist">
+<meta property="og:description" content="I build AI systems that run businesses without the owner. Take the free 3-minute audit.">
+<meta property="og:image" content="images/hero.jpeg">
+<meta property="og:url" content="https://andreapalacio.ai">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://andreapalacio.ai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Rethink+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBF8F4;
+    --bg-warm: #F5EFE6;
+    --bg-accent: #FDECD0;
+    --card: #FFFFFF;
+    --card-border: rgba(0,0,0,0.06);
+    --card-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    --deep: #1a1510;
+    --text: #2c2419;
+    --text-mid: #6b5d4d;
+    --text-light: #a89882;
+    --text-faint: #c8bfb2;
+    --orange: #E8712A;
+    --orange-glow: rgba(232,113,42,0.12);
+    --orange-faint: rgba(232,113,42,0.06);
+    --coral: #F4845F;
+    --amber: #F0A830;
+    --gradient: linear-gradient(135deg, #E8712A 0%, #F0A830 100%);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* WARM AMBIENT BLOBS */
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+  .blob-1 {
+    width: 600px; height: 600px;
+    background: var(--orange-glow);
+    top: -200px; right: -150px;
+  }
+  .blob-2 {
+    width: 500px; height: 500px;
+    background: rgba(240,168,48,0.08);
+    bottom: 20%; left: -200px;
+  }
+  .blob-3 {
+    width: 400px; height: 400px;
+    background: rgba(244,132,95,0.06);
+    top: 50%; right: -100px;
+  }
+
+  /* SPOTLIGHT */
+  .spotlight {
+    position: fixed;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,113,42,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    transition: left 0.4s ease, top 0.4s ease;
+  }
+
+  /* CURSOR GLOW (large circle that follows mouse) */
+  .cursor-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,113,42,0.10) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  body:hover .cursor-glow {
+    opacity: 1;
+  }
+
+  /* FLOATING BADGES */
+  .hero-float {
+    position: absolute;
+    background: rgba(255,255,255,0.95);
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--charcoal);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.06);
+    animation: floatBadge 6s ease-in-out infinite;
+    z-index: 2;
+    white-space: nowrap;
+  }
+  .hero-float-1 { top: 12%; right: -8%; animation-delay: 0s; }
+  .hero-float-2 { bottom: 28%; left: -12%; animation-delay: 1.5s; }
+  .hero-float-3 { bottom: 8%; right: -6%; animation-delay: 3s; }
+  .hero-float-4 { top: 38%; left: -10%; animation-delay: 4.5s; }
+
+  @keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    padding: 24px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: all 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(251,248,244,0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--card-border);
+    padding: 16px 48px;
+    box-shadow: 0 1px 16px rgba(0,0,0,0.03);
+  }
+  .nav-brand {
+    font-family: 'Rethink Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--deep);
+  }
+  .nav-links {
+    display: flex; gap: 32px; align-items: center;
+  }
+  .nav-links a {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--text-light); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-cta {
+    padding: 10px 24px !important;
+    background: var(--gradient) !important;
+    border: none !important;
+    border-radius: 100px !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    transition: all 0.3s !important;
+    box-shadow: 0 4px 16px var(--orange-glow);
+  }
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(232,113,42,0.2) !important;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative; z-index:2;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    padding: 140px 48px 80px;
+    gap: 48px;
+    overflow: hidden;
+  }
+  .hero-content { position: relative; z-index: 3; }
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    color: var(--deep);
+    margin-bottom: 24px;
+  }
+  .hero-headline .pop {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 16px; font-weight: 400;
+    color: var(--text-mid); line-height: 1.75;
+    margin-bottom: 16px; max-width: 460px;
+  }
+  .hero-tags {
+    display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap;
+  }
+  .hero-tag {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--orange);
+    padding: 7px 16px;
+    background: var(--orange-faint);
+    border-radius: 100px;
+  }
+  .hero-cta-row {
+    display: flex; gap: 16px; align-items: center;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px;
+    background: var(--gradient);
+    border: none;
+    border-radius: 100px;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px var(--orange-glow);
+    text-decoration: none;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(232,113,42,0.25);
+  }
+  .btn-primary .arrow {
+    transition: transform 0.3s;
+  }
+  .btn-primary:hover .arrow {
+    transform: translateX(4px);
+  }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px;
+    background: transparent;
+    border: 1.5px solid var(--card-border);
+    border-radius: 100px;
+    color: var(--text-mid);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+  .btn-ghost:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  /* ===== HERO IMAGE //dramatic framed treatment ===== */
+  .hero-img-frame {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-img-frame .img-container {
+    position: relative;
+    z-index: 3;
+    width: 420px;
+    height: 500px;
+    border-radius: 220px 220px 40px 40px;
+    overflow: hidden;
+    border: 4px solid transparent;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-image: linear-gradient(var(--bg), var(--bg)), var(--gradient);
+    box-shadow:
+      0 30px 80px rgba(232,113,42,0.15),
+      0 10px 30px rgba(0,0,0,0.08);
+    animation: floatGentle 6s ease-in-out infinite;
+  }
+  .hero-img-frame .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* Warm glow behind hero frame */
+  .hero-img-frame .glow {
+    position: absolute;
+    z-index: 1;
+    width: 460px;
+    height: 540px;
+    border-radius: 240px 240px 60px 60px;
+    background: linear-gradient(135deg, rgba(232,113,42,0.10), rgba(240,168,48,0.08));
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(40px);
+    animation: pulseGlow 4s ease-in-out infinite;
+  }
+
+  /* Decorative orange arc */
+  .hero-img-frame .arc {
+    position: absolute;
+    z-index: 2;
+    width: 480px;
+    height: 560px;
+    border-radius: 250px 250px 50px 50px;
+    border: 2px dashed rgba(232,113,42,0.12);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spinSlow 45s linear infinite;
+  }
+
+  /* Floating accent dots around hero */
+  .hero-img-frame .accent-dot {
+    position: absolute;
+    z-index: 4;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--orange);
+    opacity: 0.3;
+  }
+  .hero-img-frame .accent-dot:nth-child(5) {
+    top: 8%; right: 5%;
+    animation: floatDot 5s ease-in-out infinite;
+  }
+  .hero-img-frame .accent-dot:nth-child(6) {
+    bottom: 15%; left: 2%;
+    width: 7px; height: 7px;
+    opacity: 0.2;
+    animation: floatDot 7s ease-in-out infinite reverse;
+  }
+  .hero-img-frame .accent-dot:nth-child(7) {
+    top: 40%; left: -4%;
+    width: 6px; height: 6px;
+    opacity: 0.15;
+    animation: floatDot 6s ease-in-out 1s infinite;
+  }
+
+  /* Small cross accents */
+  .hero-img-frame .accent-cross {
+    position: absolute;
+    z-index: 4;
+    font-size: 18px;
+    font-weight: 200;
+    color: var(--orange);
+    opacity: 0.18;
+  }
+  .hero-img-frame .accent-cross:nth-of-type(1) {
+    top: 5%; left: 10%;
+  }
+  .hero-img-frame .accent-cross:nth-of-type(2) {
+    bottom: 10%; right: 3%;
+  }
+
+  @keyframes floatGentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes spinSlow {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.04); }
+  }
+  @keyframes floatDot {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ===== SECTION IMAGES //portrait with gradient border ===== */
+  .section-img-frame {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 520px;
+  }
+  .section-img-frame .img-container {
+    position: relative;
+    z-index: 3;
+    width: 340px;
+    height: 460px;
+    border-radius: 180px 180px 32px 32px;
+    overflow: hidden;
+    border: 3px solid transparent;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-image: linear-gradient(var(--bg), var(--bg)), var(--gradient);
+    box-shadow:
+      0 24px 60px rgba(232,113,42,0.12),
+      0 8px 24px rgba(0,0,0,0.06);
+    animation: floatGentle 7s ease-in-out infinite;
+  }
+  .section-img-frame .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .section-img-frame .glow {
+    position: absolute;
+    z-index: 1;
+    width: 380px;
+    height: 500px;
+    border-radius: 200px 200px 50px 50px;
+    background: linear-gradient(135deg, rgba(232,113,42,0.08), rgba(240,168,48,0.06));
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(35px);
+    animation: pulseGlow 5s ease-in-out infinite;
+  }
+  .section-img-frame .arc {
+    position: absolute;
+    z-index: 2;
+    width: 400px;
+    height: 520px;
+    border-radius: 210px 210px 40px 40px;
+    border: 1.5px dashed rgba(232,113,42,0.10);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spinSlow 50s linear infinite reverse;
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    position: relative; z-index:2;
+    overflow: hidden;
+    background: var(--bg-warm);
+    border-top: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+    padding: 20px 0;
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 35s linear infinite;
+  }
+  .marquee-track span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--text-light);
+    white-space: nowrap;
+    padding: 0 28px;
+  }
+  .marquee-track .dot {
+    color: var(--orange);
+    padding: 0 12px;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SCORECARD SECTION */
+  .scorecard-section {
+    position: relative; z-index:2;
+    padding: 120px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg);
+  }
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4.5vw, 64px);
+    letter-spacing: 2px;
+    color: var(--deep);
+    text-align: center;
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+  .section-title .pop {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .section-sub {
+    font-size: 15px; font-weight: 400;
+    color: var(--text-mid); text-align: center;
+    max-width: 480px; line-height: 1.75;
+    margin-bottom: 56px;
+  }
+
+  /* QUESTION CARD */
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 48px 44px;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+  }
+  .q-card::before {
+    content:'';
+    position: absolute; top:0; left:0; right:0; height:3px;
+    background: var(--gradient);
+    border-radius: 24px 24px 0 0;
+  }
+  .q-progress {
+    display: flex; justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .q-step {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--orange);
+  }
+  .q-count {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--text-light);
+  }
+  .q-bar {
+    height: 3px;
+    background: var(--bg-warm);
+    border-radius: 3px;
+    margin-bottom: 36px;
+    overflow: hidden;
+  }
+  .q-bar-fill {
+    height: 100%;
+    background: var(--gradient);
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+  .q-text {
+    font-size: 22px; font-weight: 500;
+    line-height: 1.45;
+    color: var(--deep);
+    margin-bottom: 32px;
+  }
+  .q-options { display: flex; flex-direction: column; gap: 10px; }
+  .q-opt {
+    display: flex; align-items: center; gap: 14px;
+    width: 100%;
+    padding: 16px 20px;
+    background: var(--bg);
+    border: 1.5px solid transparent;
+    border-radius: 14px;
+    color: var(--text-mid);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 400;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .q-opt:hover {
+    border-color: var(--orange);
+    color: var(--deep);
+    transform: translateX(4px);
+    background: var(--orange-faint);
+  }
+  .q-opt .circle {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--text-faint);
+    flex-shrink: 0;
+    transition: all 0.25s;
+    position: relative;
+  }
+  .q-opt:hover .circle {
+    border-color: var(--orange);
+  }
+  .q-opt.selected {
+    border-color: var(--orange);
+    background: var(--orange-faint);
+    color: var(--deep);
+    font-weight: 500;
+  }
+  .q-opt.selected .circle {
+    border-color: var(--orange);
+    background: var(--orange);
+    box-shadow: 0 0 0 3px var(--orange-glow);
+  }
+  .q-opt.selected .circle::after {
+    content: '';
+    position: absolute;
+    top: 4px; left: 4px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: white;
+  }
+
+  /* QUIZ NAV */
+  .q-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    gap: 12px;
+  }
+  .q-nav-back, .q-nav-next {
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: none;
+  }
+  .q-nav-back {
+    background: var(--bg);
+    color: var(--text-mid);
+    border: 1.5px solid var(--card-border);
+  }
+  .q-nav-back:hover {
+    background: var(--bg-warm);
+    color: var(--deep);
+  }
+  .q-nav-back:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .q-nav-next {
+    background: var(--gradient);
+    color: white;
+    margin-left: auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .q-nav-next:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(232,113,42,0.3);
+  }
+  .q-nav-next:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* LEAD CAPTURE */
+  .lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .lead-input {
+    width: 100%;
+    padding: 16px 20px;
+    background: var(--bg);
+    border: 1.5px solid transparent;
+    border-radius: 14px;
+    color: var(--deep);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    transition: all 0.25s ease;
+  }
+  .lead-input:focus {
+    border-color: var(--orange);
+    background: var(--orange-faint);
+  }
+  .lead-input::placeholder {
+    color: var(--text-light);
+  }
+  .lead-input.error {
+    border-color: #e53e3e;
+    background: rgba(229,62,62,0.04);
+  }
+
+  /* RESULTS */
+  .results-score-ring {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 24px;
+  }
+  .results-score-ring svg {
+    width: 100%;
+    height: 100%;
+  }
+  .results-score-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--deep);
+    line-height: 1;
+  }
+  .results-score-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 40%);
+    font-size: 11px;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .results-grade {
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .results-summary {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: 440px;
+    margin: 0 auto 32px;
+  }
+  .results-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .result-cat {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--bg);
+    border-radius: 12px;
+  }
+  .result-cat-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--deep);
+    flex: 1;
+  }
+  .result-cat-bar {
+    flex: 2;
+    height: 6px;
+    background: var(--bg-warm);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .result-cat-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--gradient);
+    transition: width 1s ease;
+  }
+  .result-cat-score {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--orange);
+    min-width: 36px;
+    text-align: right;
+  }
+  .results-cta {
+    display: block;
+    margin: 32px auto 0;
+    padding: 16px 40px;
+    background: var(--gradient);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: center;
+    text-decoration: none;
+  }
+  .results-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(232,113,42,0.3);
+  }
+
+  /* SECTION QUESTIONS */
+  .section-questions { display: flex; flex-direction: column; gap: 24px; }
+  .q-field { display: flex; flex-direction: column; gap: 8px; }
+  .q-label {
+    font-size: 15px; font-weight: 500;
+    color: var(--deep); line-height: 1.5;
+  }
+  .q-input {
+    width: 100%;
+    padding: 14px 18px;
+    background: var(--bg);
+    border: 1.5px solid transparent;
+    border-radius: 14px;
+    color: var(--deep);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.25s ease;
+  }
+  .q-input:focus {
+    border-color: var(--orange);
+    background: var(--orange-faint);
+  }
+  .q-input::placeholder { color: var(--text-light); }
+  .q-input.error { border-color: #e53e3e; }
+
+  /* MULTISELECT CHECKBOXES */
+  .q-opt .checkbox {
+    width: 20px; height: 20px;
+    border-radius: 6px;
+    border: 2px solid var(--text-faint);
+    flex-shrink: 0;
+    transition: all 0.25s;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .q-opt:hover .checkbox { border-color: var(--orange); }
+  .q-opt.selected .checkbox {
+    border-color: var(--orange);
+    background: var(--orange);
+  }
+  .q-opt.selected .checkbox::after {
+    content: '';
+    width: 10px; height: 6px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(-45deg) translateY(-1px);
+  }
+
+  /* RESULTS EXPANDED */
+  .results-hero { text-align: center; margin-bottom: 32px; }
+  .results-hero-score {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px; color: var(--deep); line-height: 1;
+  }
+  .results-hero-label {
+    font-size: 13px; color: var(--text-light);
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .results-stats {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px; margin-bottom: 32px;
+  }
+  .results-stat {
+    padding: 20px 16px;
+    background: var(--bg);
+    border-radius: 16px;
+    text-align: center;
+  }
+  .results-stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .results-stat-val.red { color: #e53e3e; }
+  .results-stat-val.orange { color: var(--orange); }
+  .results-stat-val.green { color: #22c55e; }
+  .results-stat-label {
+    font-size: 11px; color: var(--text-light);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  @media (max-width: 600px) {
+    .results-stats { grid-template-columns: 1fr; }
+  }
+
+  /* INTERSTITIAL */
+  .interstitial {
+    position: relative; z-index:2;
+    padding: 100px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: center;
+  }
+  .inter-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+  .inter-quote {
+    font-size: 28px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--deep);
+    margin-bottom: 20px;
+  }
+  .inter-quote strong {
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-style: normal;
+  }
+  .inter-body {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.8;
+  }
+  /* interstitial uses float-img-wrap.section-size */
+
+  /* STATS */
+  .stats {
+    position: relative; z-index:2;
+    padding: 80px 48px;
+    background: var(--bg-warm);
+    border-top: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-lbl {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  /* SERVICES */
+  .services {
+    position: relative; z-index:2;
+    padding: 120px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 56px;
+  }
+  .svc-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 36px 28px;
+    transition: all 0.35s ease;
+    box-shadow: var(--card-shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .svc-card::before {
+    content:'';
+    position: absolute; top:0; left:0; right:0; height:3px;
+    background: var(--gradient);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    border-radius: 20px 20px 0 0;
+  }
+  .svc-card:hover::before { transform: scaleX(1); }
+  .svc-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+  }
+  .svc-icon {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    width: 44px; height: 44px;
+    background: var(--orange-faint);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  .svc-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: var(--deep);
+    margin-bottom: 12px;
+  }
+  .svc-desc {
+    font-size: 13px; font-weight: 400;
+    color: var(--text-light);
+    line-height: 1.8;
+  }
+
+  /* SPEAKING */
+  .speaking {
+    position: relative; z-index:2;
+    padding: 120px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .speak-topics {
+    display: flex; flex-direction: column; gap: 12px;
+    margin-top: 32px;
+  }
+  .speak-topic {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    transition: all 0.3s;
+    box-shadow: var(--card-shadow);
+    cursor: default;
+  }
+  .speak-topic:hover {
+    border-color: var(--orange);
+    transform: translateX(6px);
+    box-shadow: 0 4px 20px var(--orange-glow);
+  }
+  .speak-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    width: 32px;
+  }
+  .speak-name {
+    font-size: 14px; font-weight: 500;
+    color: var(--deep);
+  }
+  /* speaking uses float-img-wrap.section-size */
+
+  /* RESULTS */
+  .results {
+    position: relative; z-index:2;
+    padding: 120px 48px;
+    background: var(--bg-warm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .result-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 56px 48px;
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.04);
+    position: relative;
+    overflow: hidden;
+  }
+  .result-card::before {
+    content:'';
+    position: absolute; top:0; left:0; right:0; height:3px;
+    background: var(--gradient);
+  }
+  .score-circle {
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .score-circle svg {
+    position: absolute; inset:0;
+    transform: rotate(-90deg);
+  }
+  .score-circle circle {
+    fill: none;
+    stroke-width: 4;
+    stroke-linecap: round;
+  }
+  .score-circle .track { stroke: var(--bg-warm); }
+  .score-circle .fill {
+    stroke: url(#scoreGrad);
+    stroke-dasharray: 440;
+    stroke-dashoffset: 145;
+  }
+  .score-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative; z-index: 2;
+  }
+  .score-title {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 36px;
+  }
+  .score-rows { text-align: left; }
+  .score-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .score-row:last-child { border: none; }
+  .score-row-name {
+    font-size: 13px; color: var(--text-mid); font-weight: 400;
+  }
+  .score-row-bar {
+    width: 140px; height: 4px;
+    background: var(--bg-warm);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .score-row-fill {
+    height: 100%;
+    background: var(--gradient);
+    border-radius: 4px;
+  }
+
+  /* INSTAGRAM FEED */
+  .ig-feed {
+    position: relative; z-index: 2;
+    padding: 120px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .ig-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .ig-card {
+    position: relative;
+    aspect-ratio: 9/16;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--bg-warm);
+  }
+  .ig-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(232,113,42,0.15);
+  }
+  .ig-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .ig-card .ig-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .ig-card:hover .ig-overlay {
+    opacity: 1;
+  }
+  .ig-overlay .ig-caption {
+    font-size: 12px;
+    color: #fff;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .ig-overlay .ig-stats {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+  }
+  .ig-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+  .ig-card:hover .ig-play {
+    opacity: 1;
+  }
+  .ig-play::after {
+    content: '';
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 8px 0 8px 14px;
+    border-color: transparent transparent transparent var(--orange);
+    margin-left: 3px;
+  }
+  .ig-follow-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .ig-handle {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-mid);
+  }
+  @media (max-width: 900px) {
+    .ig-grid { grid-template-columns: repeat(2, 1fr); }
+    .ig-feed { padding: 80px 24px; }
+    .ig-card .ig-overlay { opacity: 1; }
+    .ig-card .ig-play { opacity: 1; width: 36px; height: 36px; }
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative; z-index:2;
+    padding: 60px 48px;
+    border-top: 1px solid var(--card-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+  }
+  footer .f-left {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px; letter-spacing: 2px;
+    color: var(--text-light);
+  }
+  footer .f-right {
+    display: flex; gap: 24px;
+  }
+  footer .f-right a {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  footer .f-right a:hover { color: var(--orange); }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; }
+    .hero-img-frame { margin-top: 32px; }
+    .hero-img-frame .img-container { width: 300px; height: 360px; }
+    .hero-img-frame .glow { width: 340px; height: 400px; }
+    .hero-img-frame .arc { width: 360px; height: 420px; }
+    .section-img-frame { min-height: 400px; }
+    .section-img-frame .img-container { width: 260px; height: 360px; }
+    .section-img-frame .glow { width: 300px; height: 400px; }
+    .section-img-frame .arc { width: 310px; height: 410px; }
+    nav { padding: 18px 24px; }
+    .nav-links a:not(.nav-cta) { display: none; }
+    .interstitial { grid-template-columns: 1fr; gap: 40px; padding: 80px 24px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .services-grid { grid-template-columns: 1fr; }
+    .speaking { grid-template-columns: 1fr; gap: 40px; padding: 80px 24px; }
+    .scorecard-section { padding: 80px 24px; }
+    .results { padding: 80px 24px; }
+    .services { padding: 80px 24px; }
+    footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px; }
+  }
+</style>
+
+<!-- SVG gradient for score circle -->
+<svg width="0" height="0">
+  <defs>
+    <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E8712A"/>
+      <stop offset="100%" style="stop-color:#F0A830"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<div class="spotlight" id="spot"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-brand">Andrea Palacio</div>
+  <div class="nav-links">
+    <a href="#services">WHAT I DO</a>
+    <a href="#speaking">SPEAKING & PODCASTS</a>
+    <a href="#story">MY STORY</a>
+    <a href="#audit" class="nav-cta">START FREE AUDIT</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-headline fade-up">
+      I BUILD AI SYSTEMS<br>
+      THAT RUN BUSINESSES<br>
+      <span class="pop">WITHOUT THE OWNER.</span>
+    </h1>
+    <p class="hero-sub fade-up">I went from running an e-commerce business with total freedom to buying a landscaping company that ate me alive. $500K in debt. So I built AI systems that run my business without me. Now I help other owners do the same.</p>
+    <div class="hero-tags fade-up">
+      <span class="hero-tag">AI STRATEGIST</span>
+      <span class="hero-tag">KEYNOTE SPEAKER</span>
+      <span class="hero-tag">BUILDER</span>
+    </div>
+    <div class="hero-cta-row fade-up">
+      <a href="#audit" class="btn-primary">Start Free Audit <span class="arrow">→</span></a>
+      <a href="#story" class="btn-ghost">My Story</a>
+    </div>
+  </div>
+  <div class="hero-img-frame fade-up">
+    <div class="glow"></div>
+    <div class="arc"></div>
+    <div class="img-container">
+      <img src="images/hero.jpeg" alt="Andrea Palacio">
+    </div>
+    <div class="accent-cross">+</div>
+    <div class="accent-dot"></div>
+    <div class="accent-dot"></div>
+    <div class="accent-dot"></div>
+    <div class="hero-float hero-float-1"><span>AI Strategy</span></div>
+    <div class="hero-float hero-float-2"><span>600+ Videos</span></div>
+    <div class="hero-float hero-float-3"><span>Founder, Crewless</span></div>
+    <div class="hero-float hero-float-4"><span>Builder</span></div>
+    <div class="accent-cross">+</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>8,000+ FOLLOWERS</span><span class="dot">◇</span>
+    <span>600+ VIDEOS PUBLISHED</span><span class="dot">◇</span>
+    <span>184 INVOICES/MO ON AUTOPILOT</span><span class="dot">◇</span>
+    <span>VERIFIED ON INSTAGRAM</span><span class="dot">◇</span>
+    <span>$500K DEBT → PROFITABLE</span><span class="dot">◇</span>
+    <span>24/7 AI CALL HANDLING</span><span class="dot">◇</span>
+    <span>FEATURED SPEAKER</span><span class="dot">◇</span>
+    <span>8,000+ FOLLOWERS</span><span class="dot">◇</span>
+    <span>600+ VIDEOS PUBLISHED</span><span class="dot">◇</span>
+    <span>184 INVOICES/MO ON AUTOPILOT</span><span class="dot">◇</span>
+    <span>VERIFIED ON INSTAGRAM</span><span class="dot">◇</span>
+    <span>$500K DEBT → PROFITABLE</span><span class="dot">◇</span>
+    <span>24/7 AI CALL HANDLING</span><span class="dot">◇</span>
+    <span>FEATURED SPEAKER</span><span class="dot">◇</span>
+  </div>
+</div>
+
+<!-- SCORECARD -->
+<section class="scorecard-section" id="audit">
+  <div class="section-number fade-up">001 // FREE AI AUDIT</div>
+  <h2 class="section-title fade-up">HOW EFFICIENT IS YOUR<br>BUSINESS, <span class="pop">REALLY?</span></h2>
+  <p class="section-sub fade-up">48 questions. 3 minutes. Our AI analyzes your business and shows you exactly where you're bleeding time and money.</p>
+
+  <div class="q-card fade-up" id="quiz-card">
+    <div class="q-progress">
+      <span class="q-step" id="q-category">BUSINESS SNAPSHOT</span>
+      <span class="q-count" id="q-counter">Section 1 of 8</span>
+    </div>
+    <div class="q-bar"><div class="q-bar-fill" id="q-bar-fill" style="width:0%"></div></div>
+
+    <!-- Section questions rendered here -->
+    <div id="quiz-section-area"></div>
+
+    <!-- Lead capture (after all sections) -->
+    <div id="quiz-lead-form" style="display:none">
+      <div class="q-text">One last step. Enter your info to get your results.</div>
+      <div class="lead-form">
+        <input type="text" id="lead-name" placeholder="Full Name" class="lead-input" required>
+        <input type="email" id="lead-email" placeholder="Email" class="lead-input" required>
+        <input type="tel" id="lead-phone" placeholder="Phone" class="lead-input" required>
+        <input type="text" id="lead-business" placeholder="Business Name" class="lead-input" required>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div id="quiz-results" style="display:none"></div>
+
+    <!-- Navigation -->
+    <div class="q-nav" id="q-nav">
+      <button class="q-nav-back" id="q-back" onclick="quizBack()">Back</button>
+      <button class="q-nav-next" id="q-next" onclick="quizNext()">Continue</button>
+    </div>
+  </div>
+</section>
+
+<!-- INTERSTITIAL -->
+<section class="interstitial" id="story">
+  <div class="fade-up">
+    <div class="inter-label">// MY STORY</div>
+    <div class="inter-quote">"I went from e-commerce freedom and <strong>living on a sailboat</strong> to buying a landscaping company that consumed <strong>every minute of my life</strong>."</div>
+    <div class="inter-body">I was answering 40 calls a day. Chasing invoices at midnight. I tried hiring my way out of it. Virtual assistants, freelancers, you name it. Every single one failed me. So I built AI systems that now handle 184 invoices a month, answer every call, and run collections automatically. This audit is built on the exact same framework I use with my clients.</div>
+  </div>
+  <div class="section-img-frame fade-up">
+    <div class="glow"></div>
+    <div class="arc"></div>
+    <div class="img-container">
+      <img src="images/about.webp" alt="Andrea Palacio">
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="fade-up"><div class="stat-num">184</div><div class="stat-lbl">INVOICES / MONTH</div></div>
+    <div class="fade-up"><div class="stat-num">24/7</div><div class="stat-lbl">AI CALL HANDLING</div></div>
+    <div class="fade-up"><div class="stat-num">$0</div><div class="stat-lbl">MISSED FOLLOW-UPS</div></div>
+    <div class="fade-up"><div class="stat-num">2 MIN</div><div class="stat-lbl">AVG LEAD RESPONSE</div></div>
+  </div>
+</section>
+
+<!-- WHAT I DO -->
+<section class="services" id="services">
+  <div class="section-number fade-up">002 // WHAT I DO</div>
+  <h2 class="section-title fade-up" style="text-align:left">I HELP BUSINESS OWNERS<br><span class="pop">GET THEIR LIVES BACK.</span></h2>
+  <div class="services-grid">
+    <div class="svc-card fade-up">
+      <div class="svc-icon">🔍</div>
+      <div class="svc-name">FREE AI AUDIT</div>
+      <div class="svc-desc">Take the 3-minute scorecard above and get an AI-generated efficiency report showing exactly where your business is losing time and money.</div>
+    </div>
+    <div class="svc-card fade-up">
+      <div class="svc-icon">🎤</div>
+      <div class="svc-name">SPEAKING & PODCASTS</div>
+      <div class="svc-desc">I break down AI for business owners at events, podcasts, and panels. Real strategies you can actually use right away.</div>
+    </div>
+    <div class="svc-card fade-up">
+      <div class="svc-icon">🎬</div>
+      <div class="svc-name">CONTENT & EDUCATION</div>
+      <div class="svc-desc">600+ videos on AI for business owners. Follow me on Instagram, TikTok, and YouTube for weekly breakdowns on what's new and how to use it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FRAMEWORK -->
+<section class="framework" id="framework" style="position:relative; z-index:2; padding:120px 48px;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-number fade-up" style="text-align:center;">OUR PROCESS</div>
+    <h2 class="section-title fade-up" style="text-align:center; margin-bottom:12px;">WE DON'T JUST ADD AI.<br><span class="pop">WE BUY BACK YOUR TIME.</span></h2>
+    <p class="section-sub fade-up" style="margin:0 auto 64px;">I'm not a tech person who learned business. I'm a business owner who learned tech. That's why our process follows how businesses actually work, not how engineers think they should.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;" class="framework-grid">
+
+      <div class="svc-card fade-up" style="position:relative;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:64px; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:12px; opacity:0.25;">01</div>
+        <div class="svc-name">ADMIN & OPERATIONS</div>
+        <div class="svc-desc">First, we automate the work that drowns you. Invoicing, scheduling, reminders, follow-ups. The stuff that eats 15+ hours a week and makes zero revenue.</div>
+        <div style="margin-top:16px; font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--orange);">YOU GET: 15+ HRS/WEEK BACK</div>
+      </div>
+
+      <div class="svc-card fade-up" style="position:relative;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:64px; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:12px; opacity:0.25;">02</div>
+        <div class="svc-name">DELIVERY & FULFILLMENT</div>
+        <div class="svc-desc">Next, we systematize your service delivery. Job tracking, customer updates, quality checks, onboarding. Your business runs without you checking every detail.</div>
+        <div style="margin-top:16px; font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--orange);">YOU GET: CONSISTENT QUALITY</div>
+      </div>
+
+      <div class="svc-card fade-up" style="position:relative;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:64px; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:12px; opacity:0.25;">03</div>
+        <div class="svc-name">MARKETING & SALES</div>
+        <div class="svc-desc">Then we automate your growth engine. Lead capture, AI call handling, instant follow-ups, pipeline tracking. Leads never fall through the cracks again.</div>
+        <div style="margin-top:16px; font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--orange);">YOU GET: REVENUE ON AUTOPILOT</div>
+      </div>
+
+      <div class="svc-card fade-up" style="position:relative;">
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:64px; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:12px; opacity:0.25;">04</div>
+        <div class="svc-name">LEADERSHIP & SCALE</div>
+        <div class="svc-desc">Finally, you step into the CEO role. Real-time dashboards, KPI tracking, AI-powered decisions. You lead strategy while AI handles execution.</div>
+        <div style="margin-top:16px; font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--orange);">YOU GET: YOUR LIFE BACK</div>
+      </div>
+
+    </div>
+
+    <div class="fade-up" style="text-align:center; margin-top:56px; padding:40px; background:var(--bg-warm); border-radius:20px;">
+      <p style="font-size:16px; color:var(--text-mid); line-height:1.7; max-width:600px; margin:0 auto 24px;">This is the exact process I used to take my own landscaping company from chaos to autopilot. Now my team at <strong style="color:var(--deep);">Crewless</strong> builds it for other businesses.</p>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="https://runcrewless.com" target="_blank" rel="noopener" class="btn-primary">Learn More at Crewless <span class="arrow">→</span></a>
+        <a href="#audit" class="btn-ghost">Take the Free Audit First</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKING -->
+<section class="speaking" id="speaking">
+  <div>
+    <div class="section-number fade-up">003 // SPEAKING & PODCASTS</div>
+    <h2 class="section-title fade-up" style="text-align:left">BOOK ME FOR YOUR<br><span class="pop">EVENT OR PODCAST.</span></h2>
+    <p class="hero-sub fade-up" style="margin-bottom:8px">I break down the latest in AI and technology for business owners. Real strategies you can actually implement the same week, explained in a way that makes sense. Available for keynotes, panels, workshops, and podcast guest appearances.</p>
+    <div class="hero-tags fade-up" style="margin-bottom:24px">
+      <span class="hero-tag">KEYNOTES</span>
+      <span class="hero-tag">PODCASTS</span>
+      <span class="hero-tag">PANELS</span>
+      <span class="hero-tag">WORKSHOPS</span>
+    </div>
+    <div class="speak-topics">
+      <div class="speak-topic fade-up">
+        <span class="speak-num">01</span>
+        <span class="speak-name">The Latest AI Updates & What They Mean for Your Business</span>
+      </div>
+      <div class="speak-topic fade-up">
+        <span class="speak-num">02</span>
+        <span class="speak-name">From $500K in Debt to AI-Powered Freedom: My Story</span>
+      </div>
+      <div class="speak-topic fade-up">
+        <span class="speak-num">03</span>
+        <span class="speak-name">How to Actually Implement AI in a Business</span>
+      </div>
+      <div class="speak-topic fade-up">
+        <span class="speak-num">04</span>
+        <span class="speak-name">The Real ROI: How AI Impacts Revenue, Time & Team</span>
+      </div>
+    </div>
+    <div class="hero-cta-row fade-up" style="margin-top:28px">
+      <a href="mailto:hello@runcrewless.com?subject=Speaking%20Inquiry" class="btn-primary">Book Me to Speak <span class="arrow">→</span></a>
+    </div>
+  </div>
+  <div class="section-img-frame fade-up">
+    <div class="glow"></div>
+    <div class="arc"></div>
+    <div class="img-container">
+      <img src="images/speaking.webp" alt="Andrea speaking">
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results">
+  <div class="section-number fade-up">WHAT YOU'LL GET</div>
+  <h2 class="section-title fade-up">YOUR AI EFFICIENCY<br><span class="pop">SCORECARD.</span></h2>
+  <p class="section-sub fade-up">After 48 questions, our AI generates a personalized breakdown of where your business is losing hours and revenue.</p>
+  <div class="result-card fade-up">
+    <div class="score-circle">
+      <svg viewBox="0 0 150 150">
+        <circle class="track" cx="75" cy="75" r="70"/>
+        <circle class="fill" cx="75" cy="75" r="70"/>
+      </svg>
+      <div class="score-val">67</div>
+    </div>
+    <div class="score-title">OVERALL EFFICIENCY SCORE</div>
+    <div class="score-rows">
+      <div class="score-row"><span class="score-row-name">Lead Response</span><div class="score-row-bar"><div class="score-row-fill" style="width:45%"></div></div></div>
+      <div class="score-row"><span class="score-row-name">Sales & Marketing</span><div class="score-row-bar"><div class="score-row-fill" style="width:72%"></div></div></div>
+      <div class="score-row"><span class="score-row-name">Operations</span><div class="score-row-bar"><div class="score-row-fill" style="width:58%"></div></div></div>
+      <div class="score-row"><span class="score-row-name">Admin & Billing</span><div class="score-row-bar"><div class="score-row-fill" style="width:83%"></div></div></div>
+      <div class="score-row"><span class="score-row-name">Onboarding</span><div class="score-row-bar"><div class="score-row-fill" style="width:35%"></div></div></div>
+      <div class="score-row"><span class="score-row-name">Owner Dependency</span><div class="score-row-bar"><div class="score-row-fill" style="width:28%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM FEED -->
+<section class="ig-feed" id="videos">
+  <div class="section-number fade-up" style="text-align:center;">LATEST VIDEOS</div>
+  <h2 class="section-title fade-up" style="text-align:center">FOLLOW ALONG ON<br><span class="pop">INSTAGRAM.</span></h2>
+  <p class="section-sub fade-up">I post new videos every week breaking down AI for business owners. Real tools, real results, stuff you can actually use.</p>
+
+  <div class="ig-grid" id="ig-grid">
+    <!-- Populated by JS from Instagram embed or manually -->
+  </div>
+
+  <div class="ig-follow-row fade-up">
+    <a href="https://www.instagram.com/andreapalacio/" target="_blank" rel="noopener" class="btn-primary">Follow @andreapalacio <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-left">ANDREA PALACIO © 2026</div>
+  <div class="f-right">
+    <a href="https://www.instagram.com/andreapalacio/" target="_blank" rel="noopener">INSTAGRAM</a>
+    <a href="https://www.linkedin.com/in/andreapalacio" target="_blank" rel="noopener">LINKEDIN</a>
+    <a href="https://www.tiktok.com/@ai.andreapalacio" target="_blank" rel="noopener">TIKTOK</a>
+    <a href="https://www.youtube.com/@ai.andreapalacio" target="_blank" rel="noopener">YOUTUBE</a>
+    <a href="https://runcrewless.com" target="_blank" rel="noopener">CREWLESS</a>
+    <a href="mailto:hello@runcrewless.com">CONTACT</a>
+  </div>
+</footer>
+
+<script>
+// Spotlight
+const spot = document.getElementById('spot');
+document.addEventListener('mousemove', e => {
+  spot.style.left = e.clientX + 'px';
+  spot.style.top = e.clientY + 'px';
+});
+
+// Cursor glow (smooth follow)
+const glow = document.getElementById('cursorGlow');
+let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
+document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+function animateGlow() {
+  glowX += (mouseX - glowX) * 0.08;
+  glowY += (mouseY - glowY) * 0.08;
+  glow.style.left = glowX + 'px';
+  glow.style.top = glowY + 'px';
+  requestAnimationFrame(animateGlow);
+}
+animateGlow();
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Fade-up observer
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// ============================================================
+// AUDIT ENGINE — 48 questions, 8 sections (from Lovable)
+// ============================================================
+const AUDIT_SECTIONS = [
+  {
+    id: 'profile', title: 'Business Snapshot',
+    questions: [
+      { id: 'q1', label: 'What type of service business do you run?', type: 'text', required: true },
+      { id: 'q2', label: 'How many years have you been in business?', type: 'number', required: true },
+      { id: 'q3', label: 'How many employees or contractors do you currently have?', type: 'number', required: true },
+      { id: 'q4', label: 'What is your average job or contract value?', type: 'number', required: true },
+      { id: 'q5', label: 'What is your average monthly revenue over the last 3-6 months?', type: 'number', required: true },
+      { id: 'q6', label: 'On average, how many new leads do you get per week?', type: 'number', required: true }
+    ]
+  },
+  {
+    id: 'communication', title: 'Communication Load',
+    questions: [
+      { id: 'q7', label: 'How many inbound calls do you personally handle per day?', type: 'radio', options: ['0-5', '6-10', '11-20', '21-40', '40+'], required: true },
+      { id: 'q8', label: 'How often do you miss calls?', type: 'radio', options: ['Rarely', 'Sometimes', 'Daily', 'All the time'], required: true },
+      { id: 'q9', label: 'Who handles most day-to-day communication with customers?', type: 'radio', options: ['Owner', 'Admin', 'Team', 'Nobody consistently', 'AI / automations'], required: true },
+      { id: 'q10', label: 'Do you manually reply to most emails, texts, or DMs?', type: 'radio', options: ['Yes', 'No', 'Partially'], required: true }
+    ]
+  },
+  {
+    id: 'marketing', title: 'Marketing & Lead Generation',
+    questions: [
+      { id: 'q11', label: 'Where do your leads come from?', type: 'multiselect', options: ['Word of mouth', 'Website', 'Google Business Profile', 'Paid ads', 'Social media', 'Cold outreach', 'Partnerships', 'Repeat customers'], required: true },
+      { id: 'q12', label: 'How consistent is your weekly lead flow?', type: 'radio', options: ['Very consistent', 'Somewhat consistent', 'Up and down', 'Chaotic'], required: true },
+      { id: 'q13', label: 'How fast do you typically respond to new leads?', type: 'radio', options: ['Within minutes', 'Within an hour', 'Same day', 'Next day', '48+ hours'], required: true },
+      { id: 'q14', label: 'How long does it take you to send a quote or proposal?', type: 'radio', options: ['Instantly', 'Within a few hours', 'Same day', '1-2 days', '3+ days'], required: true },
+      { id: 'q15', label: 'Do you follow up on quotes?', type: 'radio', options: ['Automatically', 'Manually', 'Not at all'], required: true },
+      { id: 'q16', label: 'Who manages your paid ads?', type: 'radio', options: ['Owner', 'Employee', 'Freelancer', 'Agency', 'Nobody actively manages them'], showIf: { questionId: 'q11', contains: 'Paid ads' }, required: false },
+      { id: 'q17', label: 'Do you know your approximate cost per lead?', type: 'radio', options: ['Yes', 'No', 'Rough idea'], showIf: { questionId: 'q11', contains: 'Paid ads' }, required: false },
+      { id: 'q18', label: 'Who creates your social media content?', type: 'radio', options: ['Owner', 'Employee', 'Contractor or agency', 'Nobody consistently'], showIf: { questionId: 'q11', contains: 'Social media' }, required: false },
+      { id: 'q19', label: 'How often do you post on your main social platform?', type: 'radio', options: ['Daily', 'A few times per week', 'Weekly', 'Less than weekly'], showIf: { questionId: 'q11', contains: 'Social media' }, required: false },
+      { id: 'q20', label: 'Do you track leads coming from your website or Google profile?', type: 'radio', options: ['Yes', 'No'], showIf: { questionId: 'q11', containsAny: ['Website', 'Google Business Profile'] }, required: false }
+    ]
+  },
+  {
+    id: 'sales', title: 'Sales Process',
+    questions: [
+      { id: 'q21', label: 'What is your estimated close rate from lead to paying client?', type: 'radio', options: ['60%+', '40-59%', '20-39%', '<20%'], required: true },
+      { id: 'q22', label: 'Do you track leads in a CRM or system?', type: 'radio', options: ['Yes', 'Sort of', 'No'], required: true },
+      { id: 'q23', label: 'Roughly how many leads from the last 90 days never received proper follow-up?', type: 'radio', options: ['0-20', '21-50', '50+', 'No idea'], required: true }
+    ]
+  },
+  {
+    id: 'operations', title: 'Operations & Customer Experience',
+    questions: [
+      { id: 'q24', label: 'How fast do you respond to existing customers?', type: 'radio', options: ['Within minutes', 'Within an hour', 'Same day', 'Next day', '48+ hours'], required: true },
+      { id: 'q25', label: 'How often do things fall through the cracks?', type: 'radio', options: ['Rarely', 'Sometimes', 'Weekly', 'Daily'], required: true },
+      { id: 'q26', label: 'How do you manage jobs or tasks internally?', type: 'radio', options: ['No system', 'Whiteboard', 'Spreadsheets', 'CRM/job tool', 'Multiple tools'], required: true },
+      { id: 'q27', label: 'Do customers frequently ask for status updates?', type: 'radio', options: ['Yes', 'No', 'Sometimes'], required: true },
+      { id: 'q28', label: 'Do you collect reviews or testimonials consistently?', type: 'radio', options: ['Yes automatically', 'Yes manually', 'Sometimes', 'No'], required: true },
+      { id: 'q29', label: 'Do you have written SOPs or checklists for how work is delivered?', type: 'radio', options: ['Yes', 'Partial', 'No'], required: true },
+      { id: 'q30', label: 'How comfortable are you delegating important work without checking everything?', type: 'radio', options: ['Very comfortable', 'Somewhat comfortable', 'I double-check most things', 'I rarely delegate'], required: true }
+    ]
+  },
+  {
+    id: 'billing', title: 'Billing, Admin & Financial Health',
+    questions: [
+      { id: 'q31', label: 'When do you usually send invoices?', type: 'radio', options: ['Same day', 'Weekly', 'Bi-weekly', 'Monthly', 'Randomly'], required: true },
+      { id: 'q32', label: 'How often do invoices go past due?', type: 'radio', options: ['Rarely', 'Sometimes', 'Often', 'Almost always'], required: true },
+      { id: 'q33', label: 'How do you follow up on past-due invoices?', type: 'radio', options: ['Automated reminders', 'Manual texting or calling', 'Sometimes', 'I rarely or never follow up'], showIf: { questionId: 'q32', notEquals: 'Rarely' }, required: false },
+      { id: 'q34', label: 'How many hours per week do you or your team spend on admin tasks?', type: 'number', required: true },
+      { id: 'q35', label: 'How long does it usually take customers to pay invoices?', type: 'radio', options: ['Same day', '1-3 days', '4-7 days', '8-14 days', '15-30 days', '30+ days', 'Not sure'], required: true },
+      { id: 'q36', label: 'What is your average profit margin per job?', type: 'radio', options: ['<20%', '20-40%', '40-60%', '60%+', 'Not sure'], required: true }
+    ]
+  },
+  {
+    id: 'onboarding', title: 'Onboarding & Activation',
+    questions: [
+      { id: 'q37', label: 'How long after payment does onboarding begin?', type: 'radio', options: ['Instantly', 'Same day', '1-3 days', '4+ days'], required: true },
+      { id: 'q38', label: 'How do customers schedule their kickoff or appointment?', type: 'radio', options: ['Manual back-and-forth', 'Admin calls or texts', 'Automated link', 'No kickoff needed'], required: true },
+      { id: 'q39', label: 'Do you send a clear welcome and next-steps message?', type: 'radio', options: ['Yes automated', 'Yes manual', 'No'], required: true },
+      { id: 'q40', label: 'Do you collect client intake automatically?', type: 'radio', options: ['Yes', 'No', 'Partially'], required: true },
+      { id: 'q41', label: 'What percentage of onboarding is manual?', type: 'radio', options: ['0-25%', '25-50%', '50-75%', '75-100%'], required: true }
+    ]
+  },
+  {
+    id: 'owner', title: 'Owner Dependency & Leadership',
+    questions: [
+      { id: 'q42', label: 'How many hours per week do you work?', type: 'number', required: true },
+      { id: 'q43', label: 'How many decisions per day require your approval?', type: 'radio', options: ['0-5', '6-10', '10+', 'Almost everything'], required: true },
+      { id: 'q44', label: 'If you stepped away for 30 days, what would happen to the business?', type: 'radio', options: ['It runs fine', 'It slows down', 'It struggles', 'It stops'], required: true },
+      { id: 'q45', label: 'Do you track team KPIs consistently?', type: 'radio', options: ['Yes', 'Inconsistently', 'No'], required: true },
+      { id: 'q46', label: 'How many tools or apps do you use each day?', type: 'radio', options: ['1-3', '4-6', '7+', 'No idea'], required: true },
+      { id: 'q47', label: 'What percentage of customers return or buy again?', type: 'radio', options: ['<25%', '25-50%', '50-75%', '>75%'], required: true },
+      { id: 'q48', label: 'What is your number one priority right now?', type: 'radio', options: ['More leads', 'More time and less chaos', 'More profit', 'Better systems', 'Get out of day-to-day', 'Automate everything'], required: true }
+    ]
+  }
+];
+
+let currentSection = 0;
+let auditAnswers = {};
+let quizState = 'quiz'; // quiz | lead | results
+
+function shouldShowQuestion(q) {
+  if (!q.showIf) return true;
+  const depAnswer = auditAnswers[q.showIf.questionId];
+  if (!depAnswer) return false;
+  if (q.showIf.equals) return depAnswer === q.showIf.equals;
+  if (q.showIf.notEquals) return depAnswer !== q.showIf.notEquals;
+  if (q.showIf.contains) {
+    return Array.isArray(depAnswer) ? depAnswer.includes(q.showIf.contains) : depAnswer === q.showIf.contains;
+  }
+  if (q.showIf.containsAny) {
+    return Array.isArray(depAnswer) ? q.showIf.containsAny.some(v => depAnswer.includes(v)) : q.showIf.containsAny.includes(depAnswer);
+  }
+  return true;
+}
+
+function renderSection() {
+  const section = AUDIT_SECTIONS[currentSection];
+  const pct = Math.round((currentSection / AUDIT_SECTIONS.length) * 100);
+
+  document.getElementById('q-category').textContent = section.title.toUpperCase();
+  document.getElementById('q-counter').textContent = 'Section ' + (currentSection + 1) + ' of ' + AUDIT_SECTIONS.length;
+  document.getElementById('q-bar-fill').style.width = pct + '%';
+
+  const area = document.getElementById('quiz-section-area');
+  area.innerHTML = '';
+  area.style.display = 'block';
+  document.getElementById('quiz-lead-form').style.display = 'none';
+  document.getElementById('quiz-results').style.display = 'none';
+  document.getElementById('q-nav').style.display = 'flex';
+
+  const container = document.createElement('div');
+  container.className = 'section-questions';
+
+  section.questions.forEach(q => {
+    if (!shouldShowQuestion(q)) return;
+
+    const field = document.createElement('div');
+    field.className = 'q-field';
+    field.dataset.qid = q.id;
+
+    const label = document.createElement('div');
+    label.className = 'q-label';
+    label.textContent = q.label;
+    field.appendChild(label);
+
+    if (q.type === 'text') {
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'q-input';
+      input.placeholder = 'Type your answer...';
+      input.value = auditAnswers[q.id] || '';
+      input.oninput = () => { auditAnswers[q.id] = input.value; };
+      field.appendChild(input);
+    }
+    else if (q.type === 'number') {
+      const input = document.createElement('input');
+      input.type = 'number';
+      input.className = 'q-input';
+      input.placeholder = 'Enter a number...';
+      input.min = '0';
+      input.value = auditAnswers[q.id] || '';
+      input.oninput = () => { auditAnswers[q.id] = input.value; };
+      field.appendChild(input);
+    }
+    else if (q.type === 'radio') {
+      const opts = document.createElement('div');
+      opts.className = 'q-options';
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'q-opt' + (auditAnswers[q.id] === opt ? ' selected' : '');
+        btn.innerHTML = '<span class="circle"></span>' + opt;
+        btn.onclick = () => {
+          auditAnswers[q.id] = opt;
+          opts.querySelectorAll('.q-opt').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          // Re-render to show/hide conditional questions
+          if (section.questions.some(sq => sq.showIf && sq.showIf.questionId === q.id)) {
+            renderSection();
+          }
+        };
+        opts.appendChild(btn);
+      });
+      field.appendChild(opts);
+    }
+    else if (q.type === 'multiselect') {
+      const opts = document.createElement('div');
+      opts.className = 'q-options';
+      if (!auditAnswers[q.id]) auditAnswers[q.id] = [];
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        const isSelected = auditAnswers[q.id].includes(opt);
+        btn.className = 'q-opt' + (isSelected ? ' selected' : '');
+        btn.innerHTML = '<span class="checkbox"></span>' + opt;
+        btn.onclick = () => {
+          const arr = auditAnswers[q.id] || [];
+          if (arr.includes(opt)) {
+            auditAnswers[q.id] = arr.filter(v => v !== opt);
+          } else {
+            auditAnswers[q.id] = [...arr, opt];
+          }
+          // Re-render to update checkboxes and conditional questions
+          renderSection();
+        };
+        opts.appendChild(btn);
+      });
+      field.appendChild(opts);
+    }
+
+    container.appendChild(field);
+  });
+
+  area.appendChild(container);
+
+  // Nav
+  document.getElementById('q-back').style.display = currentSection === 0 ? 'none' : '';
+  document.getElementById('q-back').disabled = currentSection === 0;
+  document.getElementById('q-next').textContent = currentSection === AUDIT_SECTIONS.length - 1 ? 'Get My Results' : 'Continue';
+  document.getElementById('q-next').disabled = false;
+
+  quizState = 'quiz';
+  document.getElementById('quiz-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function validateSection() {
+  const section = AUDIT_SECTIONS[currentSection];
+  let valid = true;
+  section.questions.forEach(q => {
+    if (!shouldShowQuestion(q)) return;
+    if (!q.required) return;
+    const answer = auditAnswers[q.id];
+    const hasAnswer = Array.isArray(answer) ? answer.length > 0 : (answer !== undefined && answer !== '');
+    if (!hasAnswer) {
+      valid = false;
+      const field = document.querySelector('[data-qid="' + q.id + '"]');
+      if (field) {
+        const input = field.querySelector('.q-input');
+        if (input) input.classList.add('error');
+      }
+    }
+  });
+  return valid;
+}
+
+function quizNext() {
+  if (quizState === 'quiz') {
+    if (!validateSection()) return;
+    if (currentSection < AUDIT_SECTIONS.length - 1) {
+      currentSection++;
+      renderSection();
+    } else {
+      showLeadForm();
+    }
+  } else if (quizState === 'lead') {
+    submitAudit();
+  }
+}
+
+function quizBack() {
+  if (quizState === 'lead') {
+    quizState = 'quiz';
+    renderSection();
+    return;
+  }
+  if (currentSection > 0) {
+    currentSection--;
+    renderSection();
+  }
+}
+
+function showLeadForm() {
+  quizState = 'lead';
+  document.getElementById('quiz-section-area').style.display = 'none';
+  document.getElementById('quiz-lead-form').style.display = 'block';
+  document.getElementById('quiz-results').style.display = 'none';
+  document.getElementById('q-category').textContent = 'ALMOST DONE';
+  document.getElementById('q-counter').textContent = 'Section 8 of 8';
+  document.getElementById('q-bar-fill').style.width = '100%';
+  document.getElementById('q-next').textContent = 'Get My Score';
+  document.getElementById('q-back').style.display = '';
+  document.getElementById('q-back').disabled = false;
+  document.getElementById('quiz-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function submitAudit() {
+  const name = document.getElementById('lead-name').value.trim();
+  const email = document.getElementById('lead-email').value.trim();
+  const phone = document.getElementById('lead-phone').value.trim();
+  const business = document.getElementById('lead-business').value.trim();
+  let valid = true;
+  ['lead-name', 'lead-email', 'lead-phone', 'lead-business'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) { el.classList.add('error'); valid = false; }
+    else { el.classList.remove('error'); }
+  });
+  if (!valid) return;
+
+  // Calculate scores
+  const results = calculateAuditScores();
+  showAuditResults(results);
+
+  // Submit in background with scores + answers for email
+  const payload = {
+    name, email, phone, business,
+    industry: auditAnswers.q1 || '',
+    revenue: auditAnswers.q5 || '',
+    challenge: JSON.stringify(auditAnswers),
+    scores: results.scores,
+    financials: results.metrics,
+    answers: auditAnswers,
+  };
+  fetch('https://crewless-os.vercel.app/api/audit-submission', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  }).catch(err => console.error('Submission error:', err));
+}
+
+function calculateAuditScores() {
+  const employees = parseInt(auditAnswers.q3) || 1;
+  const avgJobValue = parseInt(auditAnswers.q4) || 500;
+  const monthlyRevenue = parseInt(auditAnswers.q5) || 10000;
+  const leadsPerWeek = parseInt(auditAnswers.q6) || 5;
+  const adminHours = parseInt(auditAnswers.q34) || 10;
+  const ownerHours = parseInt(auditAnswers.q42) || 50;
+
+  // Communication score (0-10)
+  const callLoad = { '0-5': 9, '6-10': 7, '11-20': 5, '21-40': 3, '40+': 1 }[auditAnswers.q7] || 5;
+  const missedCalls = { 'Rarely': 9, 'Sometimes': 6, 'Daily': 3, 'All the time': 1 }[auditAnswers.q8] || 5;
+  const commsOwner = { 'AI / automations': 10, 'Team': 8, 'Admin': 6, 'Owner': 3, 'Nobody consistently': 1 }[auditAnswers.q9] || 5;
+  const manualReply = { 'No': 9, 'Partially': 5, 'Yes': 2 }[auditAnswers.q10] || 5;
+  const commScore = ((callLoad + missedCalls + commsOwner + manualReply) / 4).toFixed(1);
+
+  // Marketing score
+  const leadConsistency = { 'Very consistent': 9, 'Somewhat consistent': 7, 'Up and down': 4, 'Chaotic': 1 }[auditAnswers.q12] || 5;
+  const responseSpeed = { 'Within minutes': 10, 'Within an hour': 8, 'Same day': 5, 'Next day': 3, '48+ hours': 1 }[auditAnswers.q13] || 5;
+  const quoteSpeed = { 'Instantly': 10, 'Within a few hours': 8, 'Same day': 6, '1-2 days': 3, '3+ days': 1 }[auditAnswers.q14] || 5;
+  const followUp = { 'Automatically': 10, 'Manually': 5, 'Not at all': 1 }[auditAnswers.q15] || 5;
+  const mktScore = ((leadConsistency + responseSpeed + quoteSpeed + followUp) / 4).toFixed(1);
+
+  // Sales score
+  const closeRate = { '60%+': 10, '40-59%': 7, '20-39%': 4, '<20%': 1 }[auditAnswers.q21] || 5;
+  const crm = { 'Yes': 9, 'Sort of': 5, 'No': 1 }[auditAnswers.q22] || 5;
+  const lostLeads = { '0-20': 9, '21-50': 5, '50+': 2, 'No idea': 3 }[auditAnswers.q23] || 5;
+  const salesScore = ((closeRate + crm + lostLeads) / 3).toFixed(1);
+
+  // Operations score
+  const custResponse = { 'Within minutes': 10, 'Within an hour': 8, 'Same day': 5, 'Next day': 3, '48+ hours': 1 }[auditAnswers.q24] || 5;
+  const fallThrough = { 'Rarely': 9, 'Sometimes': 6, 'Weekly': 3, 'Daily': 1 }[auditAnswers.q25] || 5;
+  const jobMgmt = { 'CRM/job tool': 9, 'Multiple tools': 7, 'Spreadsheets': 5, 'Whiteboard': 3, 'No system': 1 }[auditAnswers.q26] || 5;
+  const reviews = { 'Yes automatically': 10, 'Yes manually': 7, 'Sometimes': 4, 'No': 1 }[auditAnswers.q28] || 5;
+  const sops = { 'Yes': 9, 'Partial': 5, 'No': 1 }[auditAnswers.q29] || 5;
+  const delegation = { 'Very comfortable': 9, 'Somewhat comfortable': 7, 'I double-check most things': 4, 'I rarely delegate': 1 }[auditAnswers.q30] || 5;
+  const opsScore = ((custResponse + fallThrough + jobMgmt + reviews + sops + delegation) / 6).toFixed(1);
+
+  // Billing score
+  const invoiceTiming = { 'Same day': 10, 'Weekly': 7, 'Bi-weekly': 5, 'Monthly': 3, 'Randomly': 1 }[auditAnswers.q31] || 5;
+  const pastDue = { 'Rarely': 9, 'Sometimes': 6, 'Often': 3, 'Almost always': 1 }[auditAnswers.q32] || 5;
+  const payDelay = { 'Same day': 10, '1-3 days': 9, '4-7 days': 7, '8-14 days': 5, '15-30 days': 3, '30+ days': 1, 'Not sure': 4 }[auditAnswers.q35] || 5;
+  const billingScore = ((invoiceTiming + pastDue + payDelay) / 3).toFixed(1);
+
+  // Onboarding score
+  const obStart = { 'Instantly': 10, 'Same day': 8, '1-3 days': 5, '4+ days': 2 }[auditAnswers.q37] || 5;
+  const obSchedule = { 'Automated link': 10, 'Admin calls or texts': 6, 'Manual back-and-forth': 3, 'No kickoff needed': 7 }[auditAnswers.q38] || 5;
+  const obWelcome = { 'Yes automated': 10, 'Yes manual': 6, 'No': 1 }[auditAnswers.q39] || 5;
+  const obIntake = { 'Yes': 10, 'Partially': 5, 'No': 1 }[auditAnswers.q40] || 5;
+  const obManual = { '0-25%': 10, '25-50%': 7, '50-75%': 4, '75-100%': 1 }[auditAnswers.q41] || 5;
+  const obScore = ((obStart + obSchedule + obWelcome + obIntake + obManual) / 5).toFixed(1);
+
+  // Leadership score
+  const decisions = { '0-5': 9, '6-10': 6, '10+': 3, 'Almost everything': 1 }[auditAnswers.q43] || 5;
+  const stepAway = { 'It runs fine': 10, 'It slows down': 7, 'It struggles': 3, 'It stops': 1 }[auditAnswers.q44] || 5;
+  const kpis = { 'Yes': 9, 'Inconsistently': 5, 'No': 1 }[auditAnswers.q45] || 5;
+  const leaderScore = ((decisions + stepAway + kpis) / 3).toFixed(1);
+
+  // Derived metrics
+  const allScores = [commScore, mktScore, salesScore, opsScore, billingScore, obScore, leaderScore].map(Number);
+  const overall = (allScores.reduce((a, b) => a + b, 0) / allScores.length).toFixed(1);
+
+  const missedCallPct = { 'Rarely': 5, 'Sometimes': 15, 'Daily': 30, 'All the time': 50 }[auditAnswers.q8] || 15;
+  const missedLeadsMonth = Math.round(leadsPerWeek * 4 * (missedCallPct / 100));
+  const moneyLostFromLeads = missedLeadsMonth * avgJobValue * 0.3;
+  const invoiceDelayDays = { 'Same day': 0, '1-3 days': 2, '4-7 days': 5, '8-14 days': 11, '15-30 days': 22, '30+ days': 45, 'Not sure': 15 }[auditAnswers.q35] || 15;
+  const cashStuck = Math.round(monthlyRevenue * (invoiceDelayDays / 30) * 0.5);
+  const timeLostWeek = adminHours + Math.max(0, ownerHours - 30);
+  const moneyLost = Math.round(moneyLostFromLeads + (adminHours * 25 * 4));
+
+  return {
+    scores: {
+      communication: commScore,
+      marketing: mktScore,
+      sales: salesScore,
+      operations: opsScore,
+      billing: billingScore,
+      onboarding: obScore,
+      leadership: leaderScore,
+      overall: overall
+    },
+    metrics: {
+      moneyLostPerMonth: moneyLost,
+      timeLostPerWeek: timeLostWeek,
+      cashStuckPerMonth: cashStuck,
+      expectedAnnualRecovery: Math.round(moneyLost * 12 * 0.6),
+      hoursPerYear: Math.round(timeLostWeek * 52 * 0.5)
+    }
+  };
+}
+
+function showAuditResults(r) {
+  quizState = 'results';
+  document.getElementById('quiz-section-area').style.display = 'none';
+  document.getElementById('quiz-lead-form').style.display = 'none';
+  const resultsEl = document.getElementById('quiz-results');
+  resultsEl.style.display = 'block';
+  document.getElementById('q-nav').style.display = 'none';
+  document.getElementById('q-category').textContent = 'YOUR RESULTS';
+  document.getElementById('q-counter').textContent = 'BUSINESS FREEDOM SCORECARD';
+  document.getElementById('q-bar-fill').style.width = '100%';
+
+  const overall = Number(r.scores.overall);
+  let grade, gradeColor;
+  if (overall >= 8) { grade = 'HIGH PERFORMER'; gradeColor = '#22c55e'; }
+  else if (overall >= 6) { grade = 'SOLID FOUNDATION'; gradeColor = '#F0A830'; }
+  else if (overall >= 4) { grade = 'NEEDS ATTENTION'; gradeColor = '#E8712A'; }
+  else { grade = 'CRITICAL'; gradeColor = '#e53e3e'; }
+
+  resultsEl.innerHTML = ''
+    + '<div class="results-hero">'
+    + '  <div class="results-hero-score">' + r.scores.overall + '<span style="font-size:28px;color:var(--text-light)">/10</span></div>'
+    + '  <div class="results-hero-label">' + grade + '</div>'
+    + '</div>'
+    + '<div class="results-stats">'
+    + '  <div class="results-stat"><div class="results-stat-val red">$' + r.metrics.moneyLostPerMonth.toLocaleString() + '</div><div class="results-stat-label">Lost / Month</div></div>'
+    + '  <div class="results-stat"><div class="results-stat-val orange">' + r.metrics.timeLostPerWeek + 'h</div><div class="results-stat-label">Wasted / Week</div></div>'
+    + '  <div class="results-stat"><div class="results-stat-val green">$' + r.metrics.expectedAnnualRecovery.toLocaleString() + '</div><div class="results-stat-label">Recovery / Year</div></div>'
+    + '</div>'
+    + '<div class="results-categories" id="score-categories"></div>'
+    + '<a href="https://cal.com/andrea-palacio/20min?duration=20&overlayCalendar=true" target="_blank" class="results-cta" style="margin-top:24px">Book a Free Strategy Call</a>';
+
+  const depts = [
+    { name: 'Communication', score: r.scores.communication },
+    { name: 'Marketing', score: r.scores.marketing },
+    { name: 'Sales', score: r.scores.sales },
+    { name: 'Operations', score: r.scores.operations },
+    { name: 'Billing & Admin', score: r.scores.billing },
+    { name: 'Onboarding', score: r.scores.onboarding },
+    { name: 'Leadership', score: r.scores.leadership },
+  ];
+
+  const catContainer = document.getElementById('score-categories');
+  depts.forEach((dept, i) => {
+    const pct = Math.round(dept.score * 10);
+    const div = document.createElement('div');
+    div.className = 'result-cat';
+    div.innerHTML = '<div class="result-cat-name">' + dept.name + '</div><div class="result-cat-bar"><div class="result-cat-fill" style="width:0%"></div></div><div class="result-cat-score">' + dept.score + '/10</div>';
+    catContainer.appendChild(div);
+    setTimeout(() => {
+      div.querySelector('.result-cat-fill').style.width = pct + '%';
+    }, 300 + i * 150);
+  });
+
+  document.getElementById('quiz-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Initialize audit
+renderSection();
+
+// Instagram feed (fresh thumbnails Feb 28 2026)
+const igPosts = [
+  { url: "https://www.instagram.com/reel/DSXcc5djdQV/", thumb: "images/insta-4.jpg", caption: "People told me I was crazy for taking on $500K in SBA debt.", likes: 136, views: 3373 },
+  { url: "https://www.instagram.com/reel/DVOlMcmDWg3/", thumb: "images/insta-2.jpg", caption: "I just replaced a marketing department with Claude Code.", likes: 296, views: 8808 },
+  { url: "https://www.instagram.com/reel/DVM21i2jb6q/", thumb: "images/insta-3.jpg", caption: "We need someone with MORE AI automation experience.", likes: 57, views: 1369 },
+  { url: "https://www.instagram.com/reel/DVQyPsojuc-/", thumb: "images/insta-5.jpg", caption: "Up at 3am playing with Claude Code. So many possibilities.", likes: 54, views: 1137 }
+];
+const grid = document.getElementById('ig-grid');
+igPosts.forEach(p => {
+  const card = document.createElement('a');
+  card.href = p.url; card.target = '_blank'; card.rel = 'noopener'; card.className = 'ig-card fade-up';
+  card.innerHTML = '<img src="' + p.thumb + '" alt="' + p.caption + '" loading="lazy"><div class="ig-play"></div><div class="ig-overlay"><div class="ig-caption">' + p.caption + '</div><div class="ig-stats"><span>' + p.views.toLocaleString() + ' views</span><span>' + p.likes + ' likes</span></div></div>';
+  grid.appendChild(card);
+});
+document.querySelectorAll('.ig-card.fade-up').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
