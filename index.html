@@ -114,7 +114,7 @@
     box-shadow: 0 8px 32px rgba(0,0,0,0.08);
     border: 1px solid rgba(0,0,0,0.06);
     animation: floatBadge 6s ease-in-out infinite;
-    z-index: 2;
+    z-index: 5;
     white-space: nowrap;
   }
   .hero-float-1 { top: 12%; right: -8%; animation-delay: 0s; }
@@ -1606,7 +1606,7 @@
 <section class="ig-feed" id="videos">
   <div class="section-number fade-up" style="text-align:center;">LATEST VIDEOS</div>
   <h2 class="section-title fade-up" style="text-align:center">FOLLOW ALONG ON<br><span class="pop">INSTAGRAM.</span></h2>
-  <p class="section-sub fade-up">I post new videos every week breaking down AI for business owners. Real tools, real results, stuff you can actually use.</p>
+  <p class="section-sub fade-up" style="text-align:center">I post new videos every week breaking down AI for business owners. Real tools, real results, stuff you can actually use.</p>
 
   <div class="ig-grid" id="ig-grid">
     <!-- Populated by JS from Instagram embed or manually -->
@@ -2129,8 +2129,12 @@ function showAuditResults(r) {
   document.getElementById('quiz-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// Initialize audit
-renderSection();
+// Initialize audit (defer to avoid scroll-jump on page load)
+requestAnimationFrame(() => {
+  const scrollY = window.scrollY;
+  renderSection();
+  window.scrollTo(0, scrollY);
+});
 
 // Instagram feed (fresh thumbnails Feb 28 2026)
 const igPosts = [
